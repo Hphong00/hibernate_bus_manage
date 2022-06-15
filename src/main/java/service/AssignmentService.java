@@ -1,16 +1,20 @@
 package service;
 
+import entity.Assignment;
 import entity.Driver;
 import entity.Route;
 import entity.detail.DetailRoute;
 import main.Main;
+import reponsitory.AssignmentDaoImpl;
+import reponsitory.DriverDaoImpl;
+import reponsitory.RouteDaoImpl;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class AssignmentService {
+    static AssignmentDaoImpl assignmentDao = new AssignmentDaoImpl();
+    static DriverDaoImpl driverDao = new DriverDaoImpl();
+    static RouteDaoImpl routeDao = new RouteDaoImpl();
     static Map<Driver, ArrayList<DetailRoute>> linkedHashMap;
 
     public void Assignment() {
@@ -19,6 +23,12 @@ public class AssignmentService {
 
     public static void addAssignmentToMap(Driver driver, ArrayList<DetailRoute> detailRouteArrayList) {
         linkedHashMap.put(driver, detailRouteArrayList);
+    }
+    public List<Assignment> sortAsignmentNameDriver() {
+        return assignmentDao.sortAsignmentName();
+    }
+    public List<Assignment> sortAsignmentNumberRoute() {
+        return assignmentDao.sortAsignmentNumber();
     }
 
     public static void addListAssignment() throws Exception {
@@ -40,9 +50,10 @@ public class AssignmentService {
                     System.out.println("Nhập số tuyến: ");
                     int numberRoute = new Scanner(System.in).nextInt();
                     ArrayList<DetailRoute> detailRouteArrayList = new ArrayList<DetailRoute>();
+
                     addDtRouteToArrayList(detailRouteArrayList, numberRoute);
+
                     addAssignmentToMap(driver, detailRouteArrayList);
-//                    Main.
                 } catch (Exception ex) {
                     System.out.println("Mời nhập lại mã");
                 }
@@ -59,29 +70,13 @@ public class AssignmentService {
         for (int i = 0; i < numberRoute; i++) {
             System.out.println("Nhập mã tuyến");
             int idRoute = new Scanner(System.in).nextInt();
-//            Route route = RouteService.findRouteToArraylist(idRoute);
-            System.out.println("Nhập sô lượt lái của tuyến");
-            int numberOfTurns = new Scanner(System.in).nextInt();
-            if (totalNumberOfTurns > 15) {
-                System.out.println("Nhập quá 15.");
-                break;
-            }
-            totalNumberOfTurns += numberOfTurns;
-            if (totalNumberOfTurns > 15) {
-                System.out.println("Nhập quá 15.");
-                break;
-            }
-//            DetailRoute detailRoute = new DetailRoute(route, numberOfTurns);
-//            detailRouteArrayList.add(detailRoute);
-            System.out.println("Tổng số lượt trong ngày: " + totalNumberOfTurns);
-
-
-//            statistical += route.getDistance() * numberOfTurns;
+            Route route = RouteService.getEntityByIdRoute(idRoute);
+            // chi tiết route
+            DetailRoute detailRoute = new DetailRoute();
+            detailRoute.inputInformation();
+            // add chi tiết route vào arr
+            detailRouteArrayList.add(detailRoute);
         }
-        //khoang cach 1 ngayf  = khoang cach * so lan * so tuyen
-        System.out.print("Tổng khoảng cách trong ngày: ");
-        statistical = statistical * numberRoute;
-        System.out.println(statistical);
     }
     public static void sort() {
         int number = 0;
@@ -98,10 +93,10 @@ public class AssignmentService {
                 System.out.println("Mời nhập lại: ");
             }
         } while (true);
-//        if (number == 1) {
-//            Main.assignment.sortNameDriver();
-//        } else if (number == 2) {
-//            Main.assignment.sortNumberRoute();
-//        }
+        if (number == 1) {
+            Main.assignmentService.sortAsignmentNameDriver();
+        } else if (number == 2) {
+            Main.assignmentService.sortAsignmentNumberRoute();
+        }
     }
 }

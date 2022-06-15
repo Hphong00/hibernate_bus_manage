@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DriverService {
-    static DriverDaoImpl driverDao = new DriverDaoImpl();
+    public static DriverDaoImpl driverDao = new DriverDaoImpl();
     private static ArrayList<Driver> driverArrayList;
 
     public void DriverService() {

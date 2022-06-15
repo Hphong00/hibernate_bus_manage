@@ -1,5 +1,6 @@
 package entity.detail;
 
+import entity.inputInfo.InputInformation;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 @Data
 @Entity
-public class DetailRoute implements Serializable {
+public class DetailRoute implements Serializable, InputInformation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID")
@@ -24,4 +25,8 @@ public class DetailRoute implements Serializable {
     @Basic
     @Column(name = "NUMBEROFTURNS")
     private int numberofturns;
+
+    @Override
+    public void inputInformation() {
+    }
 }

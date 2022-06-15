@@ -1,6 +1,7 @@
 package reponsitory;
 
 import entity.Assignment;
+import entity.Driver;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import reponsitory.dao.Dao;
@@ -92,5 +93,39 @@ public class AssignmentDaoImpl implements Dao<Assignment> {
             session.getTransaction().rollback();
         }
         return false;
+    }
+    public List<Assignment> sortAsignmentName() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.getTransaction().begin();
+            String sql = "Select A from Assignment A order by A.driverFullname,A.id ";
+            Query<Assignment> query = session.createQuery(sql);
+            List<Assignment> assignments = query.getResultList();
+            for (Assignment assignment : assignments) {
+                System.out.println(assignment.toString());
+            }
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return null;
+    }
+    public List<Assignment> sortAsignmentNumber() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.getTransaction().begin();
+            String sql = "Select A from Assignment A order by A.driverFullname ";
+            Query<Assignment> query = session.createQuery(sql);
+            List<Assignment> assignments = query.getResultList();
+            for (Assignment assignment : assignments) {
+                System.out.println(assignment.toString());
+            }
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return null;
     }
 }

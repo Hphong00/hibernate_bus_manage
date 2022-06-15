@@ -40,7 +40,7 @@ public class RouteService implements Serializable {
         System.out.println("---------");
     }
     public static List<Route> getAllRoute() {return routeDao.getAll();}
-    public Route geEntityByIdRoute(int id) {return  routeDao.geEntityById(id);}
+    public static Route getEntityByIdRoute(int id) {return  routeDao.geEntityById(id);}
     public static boolean addRoute(Route route) { return routeDao.add(route);}
     public boolean updateRoute(Route route) {return routeDao.update(route);}
     public boolean deleteRoute(int id) {return routeDao.delete(id);}

@@ -3,11 +3,12 @@ package entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Objects;
 @Data
 @Entity
-public class Assignment {
+public class Assignment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID",nullable = false)
