@@ -18,7 +18,7 @@ public class RouteDaoImpl implements Dao<Route> {
             Query<Route> query = session.createQuery(sql);
             List<Route> routes = query.getResultList();
             for (Route route : routes) {
-                System.out.println(routes.toString());
+                System.out.println(route.toString());
             }
             session.getTransaction().commit();
         } catch (Exception e) {

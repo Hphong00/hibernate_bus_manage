@@ -11,11 +11,8 @@ import java.util.Scanner;
 
 public class DriverService {
     public static DriverDaoImpl driverDao = new DriverDaoImpl();
-    private static ArrayList<Driver> driverArrayList;
+    public static ArrayList<Driver> driverArrayList = new ArrayList<Driver>();
 
-    public void DriverService() {
-        driverArrayList = new ArrayList<Driver>();
-    }
     public static void addDriver() throws IOException {
         System.out.println("Nhập số người lái: ");
         do {

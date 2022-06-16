@@ -1,6 +1,7 @@
 package main;
 
 import entity.Assignment;
+import entity.Route;
 import entity.detail.DetailRoute;
 import reponsitory.AssignmentDaoImpl;
 //import reponsitory.DetailRouteDaoImpl;
@@ -16,14 +17,11 @@ public class Main {
     public static DriverService driverService = new DriverService();
     public static RouteService routeService = new RouteService();
     public static DetailRoute detailRoute = new DetailRoute();
+
+    public static Assignment assignment = new Assignment();
     public static AssignmentService assignmentService = new AssignmentService();
 
     public static void main(String[] args) throws Exception {
-//        DetailRouteDaoImpl detailRouteDao = new DetailRouteDaoImpl();
-//        detailRouteDao.getAll();
-//        detailRouteDao.geEntityById(101);
-//        detailRouteDao.delete(101);
-
         sMenu();
         select();
     }

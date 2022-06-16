@@ -6,6 +6,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Scanner;
+
 @Data
 @Entity
 public class DetailRoute implements Serializable, InputInformation {
@@ -28,5 +30,11 @@ public class DetailRoute implements Serializable, InputInformation {
 
     @Override
     public void inputInformation() {
+        try {
+            System.out.println("Nhập số lượt: ");
+            numberofturns = new Scanner(System.in).nextInt();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

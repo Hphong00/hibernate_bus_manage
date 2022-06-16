@@ -18,7 +18,7 @@ public class DriverDaoImpl implements Dao<Driver> {
             Query<Driver> query = session.createQuery(sql);
             List<Driver> drivers = query.getResultList();
             for (Driver driver : drivers) {
-                System.out.println(drivers.toString());
+                System.out.println(driver.toString());
             }
             session.getTransaction().commit();
         } catch (Exception e) {
